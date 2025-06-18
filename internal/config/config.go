@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-const configFileName = ".gatorconfig.json"
+const configFileName = ".rssconfig.json"
 
 // Config contains db url and current username for home directory
 type Config struct {
