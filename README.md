@@ -1,10 +1,10 @@
-# Gator
+# RSSagg
 
 A multi-player command line tool for aggregating RSS feeds and viewing the posts.
 
 ## Installation
 
-Make sure you have the latest [Go toolchain](https://golang.org/dl/) installed as well as a local Postgres database. You can then install `gator` with:
+Make sure you have the latest [Go toolchain](https://golang.org/dl/) installed as well as a local Postgres database. You can then install `rssagg` with:
 
 ```bash
 go install ...
@@ -12,7 +12,7 @@ go install ...
 
 ## Config
 
-Create a `.gatorconfig.json` file in your home directory with the following structure:
+Create a `.rssconfig.json` file in your home directory with the following structure:
 
 ```json
 {
@@ -27,31 +27,31 @@ Replace the values with your database connection string.
 Create a new user:
 
 ```bash
-gator register <name>
+rssagg register <name>
 ```
 
 Add a feed:
 
 ```bash
-gator addfeed <url>
+rssagg addfeed <url>
 ```
 
 Start the aggregator:
 
 ```bash
-gator agg 30s
+rssagg agg 30s
 ```
 
 View the posts:
 
 ```bash
-gator browse [limit]
+rssagg browse [limit]
 ```
 
 There are a few other commands you'll need as well:
 
-- `gator login <name>` - Log in as a user that already exists
-- `gator users` - List all users
-- `gator feeds` - List all feeds
-- `gator follow <url>` - Follow a feed that already exists in the database
-- `gator unfollow <url>` - Unfollow a feed that already exists in the database
+- `rssagg login <name>` - Log in as a user that already exists
+- `rssagg users` - List all users
+- `rssagg feeds` - List all feeds
+- `rssagg follow <url>` - Follow a feed that already exists in the database
+- `rssagg unfollow <url>` - Unfollow a feed that already exists in the database
