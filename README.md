@@ -1,4 +1,4 @@
-# RSSagg
+# rssAgg
 
 A multi-player command line tool for aggregating RSS feeds and viewing the posts.
 
@@ -27,30 +27,30 @@ Replace the values with your database connection string.
 Create a new user:
 
 ```bash
-rssagg register <name>
+./rssagg register <name>
 ```
 
 Add a feed:
 
 ```bash
-rssagg addfeed <url>
+./rssagg addfeed <url>
 ```
 
 Start the aggregator:
 
 ```bash
-rssagg agg 30s
+./rssagg agg 30s
 ```
 
 View the posts:
 
 ```bash
-rssagg browse [limit]
+./rssagg browse [limit]
 ```
 
 There are a few other commands you'll need as well:
 
-- `rssagg login <name>` - Log in as a user that already exists
+- `rssagg login <name>` - Log in as a user that already exists. No password authentication has been implemented yet. 
 - `rssagg users` - List all users
 - `rssagg feeds` - List all feeds
 - `rssagg follow <url>` - Follow a feed that already exists in the database
