@@ -11,6 +11,9 @@ import (
 	"time"
 )
 
+// handlerAgg handles the "agg" command, enabling periodic RSS feed scraping at intervals defined by the user.
+// It requires one argument specifying the interval duration between feed fetches, with an optional second argument.
+// Returns an error if the command's arguments are invalid or if there are issues during feed scraping.
 func handlerAgg(s *state, cmd command) error {
 	if len(cmd.Args) < 1 || len(cmd.Args) > 2 {
 		return fmt.Errorf("usage: %v <time_between_reqs>", cmd.Name)
@@ -26,11 +29,12 @@ func handlerAgg(s *state, cmd command) error {
 	ticker := time.NewTicker(timeBetweenRequests)
 
 	for ; ; <-ticker.C {
-		scrapeFeeds(s)
+		scrapeNextFeeds(s)
 	}
 }
 
-func scrapeFeeds(s *state) {
+// scrapeNextFeeds retrieves the next feed from the database, logs it, and initiates the scraping process for it.
+func scrapeNextFeeds(s *state) {
 	feed, err := s.db.GetNextFeedToFetch(context.Background())
 	if err != nil {
 		log.Println("Couldn't get next feeds to fetch", err)
@@ -40,6 +44,8 @@ func scrapeFeeds(s *state) {
 	scrapeFeed(s.db, feed)
 }
 
+// scrapeFeed retrieves the feed's data from the RSS feed and stores it in the database.
+// If there are any issues during the scraping process, the error is logged and the feed is skipped.
 func scrapeFeed(db *database.Queries, feed database.Feed) {
 	_, err := db.MarkFeedFetched(context.Background(), feed.ID)
 	if err != nil {

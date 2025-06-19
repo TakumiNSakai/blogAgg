@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+// handlerFollow creates a new feed follow in the database.
+// The user must be logged in.
 func handlerFollow(s *state, cmd command, user database.User) error {
 
 	if len(cmd.Args) != 1 {
@@ -35,6 +37,8 @@ func handlerFollow(s *state, cmd command, user database.User) error {
 	return nil
 }
 
+// handlerListFeedFollows lists all feed follows for the current user.
+// The user must be logged in.
 func handlerListFeedFollows(s *state, cmd command, user database.User) error {
 
 	feedFollows, err := s.db.GetFeedFollowsForUser(context.Background(), user.ID)
@@ -54,6 +58,9 @@ func handlerListFeedFollows(s *state, cmd command, user database.User) error {
 
 	return nil
 }
+
+// handlerUnfollow deletes a feed follow from the database.
+// The user must be logged in.
 func handlerUnfollow(s *state, cmd command, user database.User) error {
 	if len(cmd.Args) != 1 {
 		return fmt.Errorf("usage: %s <feed_url>", cmd.Name)
@@ -76,6 +83,7 @@ func handlerUnfollow(s *state, cmd command, user database.User) error {
 	return nil
 }
 
+// printFeedFollow prints a feed follow to the console.
 func printFeedFollow(username, feedname string) {
 	fmt.Printf("* User:          %s\n", username)
 	fmt.Printf("* Feed:          %s\n", feedname)

@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+// handlerListUsers lists all users in the database.
+// If the current user is the only one, it will not be listed.
 func handlerListUsers(s *state, cmd command) error {
 	users, err := s.db.GetUsers(context.Background())
 	if err != nil {
@@ -23,6 +25,7 @@ func handlerListUsers(s *state, cmd command) error {
 	return nil
 }
 
+// handlerRegister creates a new user in the database.
 func handlerRegister(s *state, cmd command) error {
 	if len(cmd.Args) != 1 {
 		return fmt.Errorf("usage: %v <name>", cmd.Name)
@@ -50,6 +53,7 @@ func handlerRegister(s *state, cmd command) error {
 	return nil
 }
 
+// handlerLogin switches the current user to the one with the given name.
 func handlerLogin(s *state, cmd command) error {
 	if len(cmd.Args) != 1 {
 		return fmt.Errorf("usage: %v <name>", cmd.Name)
@@ -70,6 +74,7 @@ func handlerLogin(s *state, cmd command) error {
 	return nil
 }
 
+// printUser prints a user to the console.
 func printUser(user database.User) {
 	fmt.Printf(" * ID:      %v\n", user.ID)
 	fmt.Printf(" * Name:    %v\n", user.Name)

@@ -8,6 +8,9 @@ import (
 	"time"
 )
 
+// handlerAddFeed creates a new feed in the database.
+// The user must be logged in.
+// The feed will be followed automatically.
 func handlerAddFeed(s *state, cmd command, user database.User) error {
 	if len(cmd.Args) != 2 {
 		return fmt.Errorf("usage: %s <name> <url>", cmd.Name)
@@ -47,6 +50,7 @@ func handlerAddFeed(s *state, cmd command, user database.User) error {
 	return nil
 }
 
+// handlerListFeeds lists all feeds in the database.
 func handlerListFeeds(s *state, cmd command) error {
 	feeds, err := s.db.GetFeeds(context.Background())
 	if err != nil {

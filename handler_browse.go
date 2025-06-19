@@ -7,6 +7,8 @@ import (
 	"strconv"
 )
 
+// handlerBrowse lists all posts for the current user.
+// The user must be logged in.
 func handlerBrowse(s *state, cmd command, user database.User) error {
 	limit := 2
 	if len(cmd.Args) == 1 {
