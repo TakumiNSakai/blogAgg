@@ -55,3 +55,10 @@ There are a few other commands you'll need as well:
 - `rssagg feeds` - List all feeds
 - `rssagg follow <url>` - Follow a feed that already exists in the database
 - `rssagg unfollow <url>` - Unfollow a feed that already exists in the database
+
+
+
+
+
+https://github.com/user-attachments/assets/469caf7f-a8ed-40c3-afc5-067f6b70c69e
+
